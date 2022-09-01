@@ -19,27 +19,27 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.A)){
-            velocity.x -= acceleration * Time.deltaTime;
+            velocity.x -= acceleration;
         }
         if (Input.GetKey(KeyCode.D)){
-            velocity.x += acceleration * Time.deltaTime;
+            velocity.x += acceleration;
         }
         if (Input.GetKey(KeyCode.W)){
-            velocity.y += acceleration * Time.deltaTime;
+            velocity.y += acceleration;
         }
         if (Input.GetKey(KeyCode.S)){
-            velocity.y -= acceleration * Time.deltaTime;
+            velocity.y -= acceleration;
         }
         if (velocity.magnitude < friction){
             velocity.x = 0.0f;
             velocity.y = 0.0f;
         }
         if (velocity.magnitude > maxVelocity){
-            velocity.x = velocity.normalized.x * maxVelocity * Time.deltaTime;
-            velocity.y = velocity.normalized.y * maxVelocity * Time.deltaTime;
+            velocity.x = velocity.normalized.x * maxVelocity;
+            velocity.y = velocity.normalized.y * maxVelocity;
         }
         velocity *= desacceleration;
         rigidbody.velocity = velocity;
