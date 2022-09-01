@@ -21,7 +21,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
             if (randomobject.tag == "boulder"){
                 // If the player clicks when close to a boulder object it calls the Pick function to affect the boulder
                 if (Input.GetMouseButtonDown(0)){
-                    playerFunctions.Pick(randomobject);
+                    playerFunctions.Mine(randomobject);
                 }
             }
             if (randomobject.tag == "drop"){

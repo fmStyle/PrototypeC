@@ -332,6 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbd2a1b5fd8f4a5fbecc92506f1a01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items:
+  - {fileID: 11400000, guid: ff3d3cb839e3448d8a42be833ddcc04e, type: 2}
+  playerInventory: []
 --- !u!1 &794678794
 GameObject:
   m_ObjectHideFlags: 0
