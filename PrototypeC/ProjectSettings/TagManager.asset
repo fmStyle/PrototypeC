@@ -7,6 +7,7 @@ TagManager:
   - Stylist
   - boulder
   - drop
+  - player
   layers:
   - Default
   - TransparentFX

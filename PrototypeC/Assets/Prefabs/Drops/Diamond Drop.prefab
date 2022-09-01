@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7674856863890448386}
   - component: {fileID: -4859834544565485013}
   m_Layer: 0
-  m_Name: AmethystDrop
+  m_Name: Diamond Drop
   m_TagString: drop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.69945145, g: 0, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.93945074, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6f5a465cab9454c8328285b204e584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemdata: {fileID: 11400000, guid: ff3d3cb839e3448d8a42be833ddcc04e, type: 2}
+  itemdata: {fileID: 11400000, guid: 11a8b963b6e174e23bffe64cc3259338, type: 2}
   initialVelocity: 4
 --- !u!61 &-4859834544565485013
 BoxCollider2D:

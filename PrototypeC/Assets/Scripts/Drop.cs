@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
-    public Sprite dropSprite;
+    public ItemData itemdata;
     Rigidbody2D rigidbody;
     public float initialVelocity;
-    public int id = 1;
-    public string name = "Amethyst";
     Vector2 velocity;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        if (dropSprite != null){
-            GetComponent<SpriteRenderer>().sprite = dropSprite;
+        if (itemdata.sprite != null){
+            GetComponent<SpriteRenderer>().sprite = itemdata.sprite;
         }
         float randomAngle = Random.Range(0, Mathf.PI*2);
         velocity.x = Mathf.Cos(randomAngle);

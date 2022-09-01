@@ -10,6 +10,7 @@ public class PlayerData : MonoBehaviour
     public int botanistLevel;
     public int pickaxeAbilityLevel;
     public int luckLevel;
+    public float money;
     void Start()
     {
         level = 1;

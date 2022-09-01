@@ -22,12 +22,14 @@ public class PlayerTriggerFunctions : MonoBehaviour
                 // If the player clicks when close to a boulder object it calls the Pick function to affect the boulder
                 if (Input.GetMouseButtonDown(0)){
                     playerFunctions.Mine(randomobject);
+                    break;
                 }
             }
             if (randomobject.tag == "drop"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     playerFunctions.PickupDrop(randomobject);
                     Destroy(randomobject);
+                    break;
                 }
             }
             

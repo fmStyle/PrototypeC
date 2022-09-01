@@ -27,11 +27,12 @@ public class PlayerFunctions : MonoBehaviour
         playerMovement.Mine(boulder);
     }
     public void PickupDrop(GameObject drop){
-        foreach (ItemData item in playerInventory.items){
-            if (item.id == drop.GetComponent<Drop>().id){
-                playerInventory.playerInventory.Add(item);
-                return;
-            }
-        }
+        // foreach (ItemData item in playerInventory.items){
+        //     if (item.id == drop.GetComponent<Drop>().itemdata.id){
+        //         playerInventory.playerInventory.Add(item);
+        //         return;
+        //     }
+        // }
+        playerInventory.playerInventory.Add(drop.GetComponent<Drop>().itemdata);
     }
 }

@@ -11,6 +11,7 @@ public class BoulderData : MonoBehaviour
     PlayerData playerData;
     void Start(){
         playerData = player.GetComponent<PlayerData>();
+        player = GameObject.FindWithTag("player");
     }
 
     void Update()
