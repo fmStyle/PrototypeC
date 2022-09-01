@@ -24,6 +24,13 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     playerFunctions.Pick(randomobject);
                 }
             }
+            if (randomobject.tag == "drop"){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    playerFunctions.PickupDrop(randomobject);
+                    Destroy(randomobject);
+                }
+            }
+            
         }
     }
 

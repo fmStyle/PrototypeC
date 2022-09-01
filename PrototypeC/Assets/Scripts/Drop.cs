@@ -7,6 +7,8 @@ public class Drop : MonoBehaviour
     public Sprite dropSprite;
     Rigidbody2D rigidbody;
     public float initialVelocity;
+    public int id = 1;
+    public string name = "Amethyst";
     Vector2 velocity;
     // Start is called before the first frame update
     void Start()

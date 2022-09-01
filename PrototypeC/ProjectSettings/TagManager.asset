@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Stylist
   - boulder
+  - drop
   layers:
   - Default
   - TransparentFX
