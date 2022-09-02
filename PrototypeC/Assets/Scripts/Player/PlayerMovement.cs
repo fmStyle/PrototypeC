@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float miningSpeed = 1.0f;
     private float miningTimer;
     private bool mining;
-    bool actionHappening;
+    public bool actionHappening;
     
 
     // Start is called before the first frame update

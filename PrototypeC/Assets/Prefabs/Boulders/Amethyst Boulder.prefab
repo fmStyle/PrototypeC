@@ -100,8 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 100
   necessaryStrength: 1
+  rarity: 10
   drop: {fileID: 7674856863890448398, guid: f96f87f79af294f3499c5dee064750c0, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 3470127519939724585, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
 --- !u!61 &1663785488500876539
 BoxCollider2D:
   m_ObjectHideFlags: 0

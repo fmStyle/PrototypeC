@@ -8,6 +8,9 @@ TagManager:
   - boulder
   - drop
   - player
+  - minecart
+  - canvas
+  - bed
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - ItemUI
   - 
   - 
   - 

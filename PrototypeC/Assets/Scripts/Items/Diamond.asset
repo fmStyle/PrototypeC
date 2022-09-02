@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e35eca2fce344d28850cf9462736f0, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
-  id: 0
-  name: 
-  description: 
-  cost: 0
+  id: 2
+  name: Diamond
+  description: People say there were wars because of this little stone
+  cost: 300
   sprite: {fileID: 0}

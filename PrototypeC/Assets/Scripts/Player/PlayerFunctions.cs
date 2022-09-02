@@ -7,6 +7,7 @@ public class PlayerFunctions : MonoBehaviour
     PlayerData playerData;
     PlayerInventory playerInventory;
     PlayerMovement playerMovement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,9 @@ public class PlayerFunctions : MonoBehaviour
         //         return;
         //     }
         // }
-        playerInventory.playerInventory.Add(drop.GetComponent<Drop>().itemdata);
+
+        // playerInventory.playerInventory.Add(drop.GetComponent<Drop>().itemdata);
+
+        playerInventory.AddDrop(drop);
     }
 }

@@ -10,7 +10,9 @@ public class PlayerData : MonoBehaviour
     public int botanistLevel;
     public int pickaxeAbilityLevel;
     public int luckLevel;
-    public float money;
+    
+    public int maxEnergy;
+    public int energy;
     void Start()
     {
         level = 1;
@@ -19,6 +21,8 @@ public class PlayerData : MonoBehaviour
         botanistLevel = 1;
         pickaxeAbilityLevel = 1;
         luckLevel = 1;
+        maxEnergy = 30;
+        energy = maxEnergy;
     }
 
     // Update is called once per frame

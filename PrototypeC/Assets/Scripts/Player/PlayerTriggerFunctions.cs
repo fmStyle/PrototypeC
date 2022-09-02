@@ -7,11 +7,19 @@ public class PlayerTriggerFunctions : MonoBehaviour
 
     HashSet<GameObject> objectsTouchingPlayer;
     PlayerFunctions playerFunctions;
-    
+    public GameObject minecartInventory;
+    PlayerInventory playerInventory;
+    PlayerData playerData;
+    PlayerMovement playerMovement;
+    public BedScript bedScript;
+
     void Start()
     {
         objectsTouchingPlayer = new HashSet<GameObject>();
         playerFunctions = GetComponent<PlayerFunctions>();
+        playerInventory = GetComponent<PlayerInventory>();
+        playerData = GetComponent<PlayerData>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -22,6 +30,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
                 // If the player clicks when close to a boulder object it calls the Pick function to affect the boulder
                 if (Input.GetMouseButtonDown(0)){
                     playerFunctions.Mine(randomobject);
+                    playerData.energy -= 1;
                     break;
                 }
             }
@@ -30,6 +39,17 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     playerFunctions.PickupDrop(randomobject);
                     Destroy(randomobject);
                     break;
+                }
+            }
+            if (randomobject.tag == "minecart"){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    minecartInventory.SetActive(true);
+                    playerInventory.OpenInventory();
+                }
+            }
+            if (randomobject.tag == "bed"){
+                if (Input.GetKeyDown(KeyCode.E) || playerMovement.actionHappening){
+                    bedScript.Sleep();
                 }
             }
             
@@ -42,6 +62,10 @@ public class PlayerTriggerFunctions : MonoBehaviour
     void OnTriggerExit2D(Collider2D collider){
         if (objectsTouchingPlayer.Contains(collider.gameObject)){
             objectsTouchingPlayer.Remove(collider.gameObject);
+        }
+        if (collider.tag == "minecart"){
+            minecartInventory.SetActive(false);
+            playerInventory.CloseInventory();
         }
     }
 }

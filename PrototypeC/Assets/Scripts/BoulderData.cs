@@ -6,12 +6,13 @@ public class BoulderData : MonoBehaviour
 {
     public float durability;
     public float necessaryStrength;
+    public int rarity;
     public GameObject drop;
     public GameObject player;
     PlayerData playerData;
     void Start(){
         playerData = player.GetComponent<PlayerData>();
-        player = GameObject.FindWithTag("player");
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     void Update()
