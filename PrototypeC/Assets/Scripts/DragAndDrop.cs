@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragAndDrop : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public GameObject canvasObject;
     private Canvas canvas;
@@ -27,7 +27,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     }
 
     public void OnEndDrag(PointerEventData eventData){
-        Debug.Log("OnPointerDown");
+        
         canvasGroup.blocksRaycasts = true;
         transform.position = originalPos;
         canvasGroup.alpha = 1.0f;
@@ -38,7 +38,24 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
-    public void OnPointerDown(PointerEventData eventData){
-        Debug.Log("OnPointerDown");
+    /// On Item Click Events
+    public void OnPointerClick(PointerEventData eventData){
+        
+        if (eventData.pointerDrag != null){
+            Debug.Log("OnPointerDown");
+            switch(eventData.pointerDrag.GetComponent<ItemUI>().item.type){
+                case "stone":
+                    {
+                        /// For the buture
+                        break;
+                    }
+                case "constructable":
+                    {
+                        eventData.pointerDrag.GetComponent<ConstructableItemUI>().action();
+                        break;
+                    }
+            }
+        }
     }
+
 }

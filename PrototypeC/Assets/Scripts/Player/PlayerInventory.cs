@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour
     public List<GameObject>playerInventoryUI = new List<GameObject>();
     public GameObject inventoryUI;
     public GameObject itemInventoryUI;
+    public List<GameObject>prefabsConstructableItems = new List<GameObject>();
     public Transform itemParentForUI;
     public Toggle EnableRemove;
     public float money;
@@ -28,30 +29,66 @@ public class PlayerInventory : MonoBehaviour
     }
     
     public void AddDrop(GameObject drop){
+
         ItemData newItemData = drop.GetComponent<Drop>().itemdata;
-        // drop.GetComponent<ItemUI>().whereNow = "inventory";
-        playerInventory.Add(newItemData);
-        GameObject newItemUI = Instantiate(itemInventoryUI, new Vector2(0, 0), Quaternion.identity, itemParentForUI);
 
-        var itemName = newItemUI.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
-        var itemIcon = newItemUI.transform.Find("ItemIcon").GetComponent<Image>();
-
-        itemName.text = newItemData.name;
-        if (newItemData.sprite != null){
-            itemIcon.sprite = newItemData.sprite;
+        bool constructable = false;
+        GameObject constructableObjectUI = new GameObject();
+        GameObject newItemUI;
+        foreach(var construct in prefabsConstructableItems){
+            if (construct.GetComponent<ConstructableItemUI>().item == newItemData){
+                constructable = true;
+                constructableObjectUI = construct;
+                break;
+            }
         }
-        newItemUI.GetComponent<ItemUI>().item = newItemData;
-        newItemUI.GetComponent<ItemUI>().whereNow = "inventory";
+            playerInventory.Add(newItemData);
+            if (!constructable) {
+                newItemUI = Instantiate(itemInventoryUI, new Vector2(0, 0), Quaternion.identity, itemParentForUI);
+            }
+            else{
+                newItemUI = Instantiate(constructableObjectUI, new Vector2(0, 0), Quaternion.identity, itemParentForUI);
+            }
+            
 
-        playerInventoryUI.Add(newItemUI);
-        EnableItemsRemove();
+            var itemName = newItemUI.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
+            var itemIcon = newItemUI.transform.Find("ItemIcon").GetComponent<Image>();
+
+            itemName.text = newItemData.name;
+            if (newItemData.sprite != null){
+                itemIcon.sprite = newItemData.sprite;
+            }
+            // if (!constructable){
+            newItemUI.GetComponent<ItemUI>().item = newItemData;
+            newItemUI.GetComponent<ItemUI>().whereNow = "inventory";
+            // }
+
+            playerInventoryUI.Add(newItemUI);
+        
+        // EnableItemsRemove();
     }
 
     public void AddItem(GameObject item){
         ItemData newItemData = item.GetComponent<ItemUI>().item;
         
+        bool constructable = false;
+        GameObject constructableObjectUI = new GameObject();
+        GameObject newItemUI;
+        foreach(var construct in prefabsConstructableItems){
+            if (construct.GetComponent<ConstructableItemUI>().item == newItemData){
+                constructable = true;
+                constructableObjectUI = construct;
+                break;
+            }
+        }
+
         playerInventory.Add(newItemData);
-        GameObject newItemUI = Instantiate(itemInventoryUI, new Vector2(0, 0), Quaternion.identity, itemParentForUI);
+        if (!constructable) {
+            newItemUI = Instantiate(itemInventoryUI, new Vector2(0, 0), Quaternion.identity, itemParentForUI);
+        }
+        else{
+            newItemUI = Instantiate(constructableObjectUI, new Vector2(0, 0), Quaternion.identity, itemParentForUI);
+        }
 
         var itemName = newItemUI.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
         var itemIcon = newItemUI.transform.Find("ItemIcon").GetComponent<Image>();
@@ -63,7 +100,7 @@ public class PlayerInventory : MonoBehaviour
         newItemUI.GetComponent<ItemUI>().item = newItemData;
         newItemUI.GetComponent<ItemUI>().whereNow = "inventory";
         playerInventoryUI.Add(newItemUI);
-        EnableItemsRemove();
+        // EnableItemsRemove();
     }
 
     public void EnableItemsRemove(){
@@ -80,9 +117,9 @@ public class PlayerInventory : MonoBehaviour
         }
     }
     public void RemoveItem(GameObject item){
-        Debug.Log("CALLING");
+        // Debug.Log("CALLING");
         if (playerInventoryUI.Contains(item)){
-            Debug.Log("CALLING2");
+            // Debug.Log("CALLING2");
             // int index = playerInventoryUI.FindIndex(item);
             Destroy(item);
             playerInventoryUI.Remove(item);

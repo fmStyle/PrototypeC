@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7e35eca2fce344d28850cf9462736f0, type: 3}
-  m_Name: Amethyst
+  m_Name: Plantpot
   m_EditorClassIdentifier: 
-  id: 1
-  name: Amethyst
-  description: It's quite common but it shines
-  type: stone
-  cost: 20
-  costToSellToNPC: 5
+  id: 0
+  name: Plantpot
+  description: After the big war, this chunk of dirt became really valuable
+  type: constructable
+  cost: 0
+  costToSellToNPC: 50
   sprite: {fileID: 0}

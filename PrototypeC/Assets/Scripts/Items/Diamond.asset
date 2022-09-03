@@ -15,5 +15,7 @@ MonoBehaviour:
   id: 2
   name: Diamond
   description: People say there were wars because of this little stone
+  type: stone
   cost: 300
+  costToSellToNPC: 150
   sprite: {fileID: 0}

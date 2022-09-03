@@ -8,9 +8,15 @@ public class ItemUI : MonoBehaviour
     public GameObject player;
     public string whereNow;
     GameObject button;
+
     void Start(){
         player = GameObject.FindGameObjectWithTag("player");
         button = gameObject.transform.Find("RemoveButton").gameObject;
         button.GetComponent<Button>().onClick.AddListener(delegate {player.GetComponent<PlayerInventory>().RemoveItem(gameObject);});
     }
+
+    public virtual void Update(){}
+
+    public virtual void action(){}
+
 }

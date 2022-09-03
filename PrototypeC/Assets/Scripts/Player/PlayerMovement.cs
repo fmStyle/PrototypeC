@@ -8,7 +8,10 @@ public class PlayerMovement : MonoBehaviour
     Vector2 velocity;
     PlayerData playerData;
     private GameObject miningBoulder;
-
+    private GameObject buildingObject;
+    private GameObject constructableItem;
+    public Camera mainCamera;
+    // HashSet<GameObject> objectsTouchingBuildingObject;
     public float acceleration;
     public float maxVelocity;
     public float friction;
@@ -18,11 +21,15 @@ public class PlayerMovement : MonoBehaviour
     private float miningTimer;
     private bool mining;
     public bool actionHappening;
+    public bool building;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        // objectsTouchingBuildingObject = new HashSet<GameObject>();
+        mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        building = false;
         miningTimer = 0.0f;
         actionHappening = false;
         rigidbody = GetComponent<Rigidbody2D>();
@@ -34,12 +41,30 @@ public class PlayerMovement : MonoBehaviour
         if(CheckMining()){
             BoulderData boulderData = miningBoulder.GetComponent<BoulderData>();
             boulderData.durability -= playerData.pickaxeAbilityLevel * 20.0f;
+            playerData.energy -= 1;
+        }
+        if (building){
+            Vector3 newPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            newPos.z = 0f;
+            buildingObject.transform.position = newPos;
+            if (Input.GetKeyDown(KeyCode.Escape)){
+                Destroy(buildingObject);
+                GetComponent<PlayerInventory>().OpenInventory();
+                building = false;
+            }
+            if (Input.GetMouseButtonDown(0)){
+                if (!buildingObject.GetComponent<BuildingObject>().IsObstructing()){
+                    // buildingObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+                    GetComponent<PlayerInventory>().RemoveItem(constructableItem);
+                    buildingObject.GetComponent<BuildingObject>().FinishedBuilding();
+                    building = false;
+                }
+            }
         }
     }
     void FixedUpdate()
     {
 
-        
         if (!actionHappening && !mining){
             if (Input.GetKey(KeyCode.A)){
                 velocity.x -= acceleration + (playerData.velocityLevel * velocityLevelScaling);
@@ -66,10 +91,12 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.velocity = velocity;
     }
     public void Mine(GameObject boulder){
-        if (mining == true) return;
-        mining = true;
-        miningTimer = 1.0f;
-        miningBoulder = boulder;
+        if (!building){
+            if (mining == true) return;
+            mining = true;
+            miningTimer = 1.0f;
+            miningBoulder = boulder;
+        }
     }
     /// Returns true when finished the timer
     public bool CheckMining(){
@@ -84,4 +111,20 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
+    public void EnterBuildingMode(GameObject objectToBuild, GameObject constructableItem){
+        building = true;
+        GetComponent<PlayerInventory>().CloseInventory();
+        buildingObject = objectToBuild;
+        this.constructableItem = constructableItem;
+    }
+
+    // void OnTriggerEnter2D(Collider2D collider){
+    //     objectsTouchingBuildingObject.Add(collider.gameObject);
+    // }
+    // void OnTriggerExit2D(Collider2D collider){
+    //     if (objectsTouchingBuildingObject.Contains(collider.gameObject)){
+    //         objectsTouchingBuildingObject.Remove(collider.gameObject);
+    //     }
+    // }
 }

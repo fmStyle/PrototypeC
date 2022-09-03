@@ -8,6 +8,8 @@ public class ItemData : ScriptableObject
     public int id;
     public string name;
     public string description;
+    public string type;
     public float cost;
+    public float costToSellToNPC;
     public Sprite sprite;
 }
