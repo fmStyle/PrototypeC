@@ -51,6 +51,7 @@ public class BuildingObject : MonoBehaviour
         int LayerDefault = LayerMask.NameToLayer("Default");
         gameObject.layer = LayerDefault;
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("Use1");
         Destroy(this);
     }
 }

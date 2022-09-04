@@ -4520,6 +4520,7 @@ MonoBehaviour:
   minecart: {fileID: 1191833557}
   fadePanel: {fileID: 1142780785}
   plantpotManager: {fileID: 0}
+  radio: {fileID: 1450864693}
   sleepingDuration: 7
   minecartAnimationSpeed: 1
   minecartAnimationAcceleration: 3
@@ -4565,7 +4566,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4cf4be8bd7ed54b22937e9f6e94a06cb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6650944, b: 0.8464726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8815,7 +8816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084406875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.67, y: 7.73, z: 0}
+  m_LocalPosition: {x: -10.53, y: 5.79, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10041,7 +10042,7 @@ GameObject:
   - component: {fileID: 1291365179}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: audiomanager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10059,12 +10060,170 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    spatialBlend: 0
+  - name: GreenRiverRadio
+    clip: {fileID: 8300000, guid: 149f59678c06d44bf89961af8e83f420, type: 3}
+    owner: {fileID: 1450864688}
+    volume: 0.7
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 118
     loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CottonFieldsRadio
+    clip: {fileID: 8300000, guid: 793c039627504428b9e62a9dc1178dc6, type: 3}
+    owner: {fileID: 1450864688}
+    volume: 0.7
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 118
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LookinOutRadio
+    clip: {fileID: 8300000, guid: cc70bca6d72fa4d7c814f6848c36993f, type: 3}
+    owner: {fileID: 1450864688}
+    volume: 0.7
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 118
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Walking
+    clip: {fileID: 8300000, guid: 357b537724d9c42dcb31b768a530e2e6, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 217
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: RadioTurn
+    clip: {fileID: 8300000, guid: 094f828ea4a3b44e2b93c73f27272139, type: 3}
+    owner: {fileID: 1450864688}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: MineSound
+    clip: {fileID: 8300000, guid: 7340f31c0e2dc4fe0b2dd885a3dee34c, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: GeneralUseAction
+    clip: {fileID: 8300000, guid: 8d599c9a384944d05b3487183e061733, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LevelUp
+    clip: {fileID: 8300000, guid: a2c1a0d98357c4f55a031b449ab599b0, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.353
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use1
+    clip: {fileID: 8300000, guid: 4005e6705ab78444ba14d4a61e743bce, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use2
+    clip: {fileID: 8300000, guid: b9908c5a9230846f18ce476b6292f500, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.345
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use3
+    clip: {fileID: 8300000, guid: 7ad4e11132ce74d919b10751564cabd0, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.549
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use3
+    clip: {fileID: 8300000, guid: 7ad4e11132ce74d919b10751564cabd0, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: RadioTurn
+    clip: {fileID: 8300000, guid: 094f828ea4a3b44e2b93c73f27272139, type: 3}
+    owner: {fileID: 1450864688}
+    volume: 0.229
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CasetteSound
+    clip: {fileID: 8300000, guid: 0566e04acee1746499aa8a5d453eb71a, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.377
+    pitch: 1
+    spatialBlend: 0.452
+    maxDistance: 10
+    spread: 151
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Coins
+    clip: {fileID: 8300000, guid: b0359af35307a411cb05bf1275c71e3d, type: 3}
+    owner: {fileID: 463160986}
+    volume: 0.433
+    pitch: 1
+    spatialBlend: 0.452
+    maxDistance: 10
+    spread: 151
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
 --- !u!4 &1291365180
 Transform:
@@ -10576,6 +10735,7 @@ GameObject:
   - component: {fileID: 1450864690}
   - component: {fileID: 1450864692}
   - component: {fileID: 1450864691}
+  - component: {fileID: 1450864693}
   m_Layer: 0
   m_Name: TableWithRadio
   m_TagString: radio
@@ -10591,7 +10751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450864688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.36, z: -5.1246104}
+  m_LocalPosition: {x: 0.66, y: -6.93, z: -5.1246104}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10707,6 +10867,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.41998136, y: 0.3469453}
   m_EdgeRadius: 0
+--- !u!114 &1450864693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450864688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bd194175e254e1899d8c71d490eeb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioManager: {fileID: 1291365179}
+  songsRadio:
+  - GreenRiverRadio
+  - LookinOutRadio
+  - CottonFieldsRadio
 --- !u!1 &1458931456
 GameObject:
   m_ObjectHideFlags: 0
@@ -11983,18 +12160,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.049536705, y: -0.1733799}
+  m_Offset: {x: 0.0014848411, y: -0.023551583}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.377779, y: 2.23843}
+  m_Size: {x: 0.4370048, y: 0.4011135}
   m_EdgeRadius: 0
 --- !u!114 &1737820642
 MonoBehaviour:
@@ -12039,7 +12216,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12060,8 +12237,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: babb862e8c5754e1e80cc180a93c1da3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12080,8 +12257,8 @@ Transform:
   m_GameObject: {fileID: 1737820640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.95, y: 48.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
@@ -12930,18 +13107,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.049536705, y: -0.1733799}
+  m_Offset: {x: -0.006949663, y: -0.01201129}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.377779, y: 2.23843}
+  m_Size: {x: 0.43275976, y: 0.35822916}
   m_EdgeRadius: 0
 --- !u!114 &1897362743
 MonoBehaviour:
@@ -12984,7 +13161,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13005,8 +13182,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c359a18d5ef4e4bd8b36d328d379a142, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -13025,8 +13202,8 @@ Transform:
   m_GameObject: {fileID: 1897362741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 44.98, y: 48.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
@@ -15104,6 +15281,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1839395099}
     - target: {fileID: 3470127519939724588, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1291365179}
+    - target: {fileID: 3470127519939724588, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
       propertyPath: luckLevelUpPrice
       value: 500
       objectReference: {fileID: 0}
@@ -15137,11 +15318,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470127519939724589, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8
+      value: 31.6
       objectReference: {fileID: 0}
     - target: {fileID: 3470127519939724589, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.4
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 3470127519939724589, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15191,6 +15372,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 794678796}
+    - target: {fileID: 3470127519939724591, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1291365179}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
 --- !u!1001 &6330059696528988150

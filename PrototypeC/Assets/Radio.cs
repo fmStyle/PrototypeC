@@ -40,10 +40,12 @@ public class Radio : MonoBehaviour
     }
     public void TurnOffRadio(){
         audioManager.Pause(songsRadio[songIndex]);
+        audioManager.Play("RadioTurn");
         turnedOn = false;
     }   
     public void TurnOnRadio(){
         audioManager.Play(songsRadio[songIndex]);
+        audioManager.Play("RadioTurn");
         turnedOn = true;
     }
     public bool IsTurnedOn(){

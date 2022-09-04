@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
         if (s == null){
             Debug.LogError("Name doesn't match with any of the existing sounds :(");
         }
-        s.source.Play();
+        else s.source.Play();
         
     }
 

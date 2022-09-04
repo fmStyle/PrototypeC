@@ -15,16 +15,17 @@ public class PlayerInventory : MonoBehaviour
     public Transform itemParentForUI;
     public Toggle EnableRemove;
     public float money;
+    AudioManager audioManager;
     void Start()
     {
-        
+        audioManager = GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I)){
-            if (!inventoryUI.active) inventoryUI.SetActive(true);
-            else                     inventoryUI.SetActive(false);
+            if (!inventoryUI.active) OpenInventory();
+            else                     CloseInventory();
         }
     }
     
@@ -64,6 +65,7 @@ public class PlayerInventory : MonoBehaviour
             // }
 
             playerInventoryUI.Add(newItemUI);
+            audioManager.Play("Use3");
         
         // EnableItemsRemove();
     }
@@ -100,6 +102,7 @@ public class PlayerInventory : MonoBehaviour
         newItemUI.GetComponent<ItemUI>().item = newItemData;
         newItemUI.GetComponent<ItemUI>().whereNow = "inventory";
         playerInventoryUI.Add(newItemUI);
+        audioManager.Play("Use3");
         // EnableItemsRemove();
     }
 
@@ -136,7 +139,9 @@ public class PlayerInventory : MonoBehaviour
         if (playerInventory.Money() >= itemPrice){
             playerInventory.RemoveMoney(itemPrice);
             playerInventory.AddItem(item);
+            GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("Coins");
         }
+
     }
 
     public void AddMoney(float amount){
@@ -153,10 +158,16 @@ public class PlayerInventory : MonoBehaviour
     }
 
     public void OpenInventory(){
-        inventoryUI.SetActive(true);
+        if (!inventoryUI.activeSelf){
+            inventoryUI.SetActive(true);
+            audioManager.Play("Use1");
+        }
     }
     public void CloseInventory(){
-        inventoryUI.SetActive(false);
+        if (inventoryUI.activeSelf){
+            inventoryUI.SetActive(false);
+            audioManager.Play("Use1");
+        }
     }
 
 }

@@ -17,6 +17,7 @@ public class PlayerData : MonoBehaviour
     PlayerInventory playerInventory;
     public GameObject Stats;
     public GameObject SkillShop;
+    // public AudioManager audioManager;
 
     TextMeshProUGUI moneyText;
     TextMeshProUGUI strenghtLevelText;
@@ -35,6 +36,7 @@ public class PlayerData : MonoBehaviour
     public float luckLevelUpPrice = 500f;
     void Start()
     {
+        // audioManager = GetComponent<PlayerMovement>().audioManager;
         level = 1;
         strengthLevel = 1;
         velocityLevel = 1;
@@ -94,6 +96,7 @@ public class PlayerData : MonoBehaviour
             playerDataAux.strenghtLevelUpPrice += playerDataAux.strenghtLevelUpPrice/4.0f;
         }
         playerDataAux.UpdateStrings();
+        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
     }
     public void LevelUpBotanist(){
         GameObject player = GameObject.FindWithTag("player");
@@ -106,6 +109,7 @@ public class PlayerData : MonoBehaviour
             playerDataAux.botanistLevelUpPrice += playerDataAux.botanistLevelUpPrice/4.0f;
         }
         playerDataAux.UpdateStrings();
+        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
     }
     public void LevelUpPickaxe(){
         GameObject player = GameObject.FindWithTag("player");
@@ -118,6 +122,7 @@ public class PlayerData : MonoBehaviour
             playerDataAux.pickaxeLevelUpPrice += playerDataAux.pickaxeLevelUpPrice/4.0f;
         }
         playerDataAux.UpdateStrings();
+        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
     }
     public void LevelUpLuck(){
         GameObject player = GameObject.FindWithTag("player");
@@ -130,5 +135,6 @@ public class PlayerData : MonoBehaviour
             playerDataAux.luckLevelUpPrice += playerDataAux.luckLevelUpPrice/4.0f;
         }
         playerDataAux.UpdateStrings();
+        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
     }
 }

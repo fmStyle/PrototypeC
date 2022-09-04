@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
             BoulderData boulderData = miningBoulder.GetComponent<BoulderData>();
             boulderData.durability -= (10*playerData.strengthLevel) + 10.0f;
             playerData.energy -= 1;
+            audioManager.Play("MineSound");
         }
         if (building){
             Vector3 newPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);

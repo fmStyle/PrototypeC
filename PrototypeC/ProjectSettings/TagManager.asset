@@ -23,6 +23,7 @@ TagManager:
   - exithousebotanist
   - sign
   - radio
+  - audiomanager
   layers:
   - Default
   - TransparentFX

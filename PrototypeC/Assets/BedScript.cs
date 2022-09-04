@@ -40,6 +40,7 @@ public class BedScript : MonoBehaviour
         
         if (!player.GetComponent<PlayerMovement>().actionHappening){
             player.GetComponent<PlayerMovement>().actionHappening = true;
+            GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("CasetteSound");
             fadePanel.SetActive(true);
             originalVolume = radio.ActualSongPlaying().volume;
         }

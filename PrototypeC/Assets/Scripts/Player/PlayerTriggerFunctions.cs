@@ -26,8 +26,11 @@ public class PlayerTriggerFunctions : MonoBehaviour
     PlayerMovement playerMovement;
     public BedScript bedScript;
 
+    AudioManager audioManager;
+
     void Start()
     {
+        audioManager = GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>();
         firstTimeSign = false;
         objectsTouchingPlayer = new HashSet<GameObject>();
         playerFunctions = GetComponent<PlayerFunctions>();
@@ -52,9 +55,9 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     break;
                 }
                 if (playerData.strengthLevel >= randomobject.GetComponent<BoulderData>().necessaryStrength){
-                    actionInfo.text = "E) Mine Boulder";
+                    actionInfo.text = "Left Click) Mine Boulder";
                 } else{
-                    actionInfo.text = "E) Not enough strenght level (Necessary " + randomobject.GetComponent<BoulderData>().necessaryStrength.ToString() + ")";
+                    actionInfo.text = "Left Click) Not enough strenght level (Necessary " + randomobject.GetComponent<BoulderData>().necessaryStrength.ToString() + ")";
                 }
                 
             }
@@ -68,6 +71,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
             }
             if (randomobject.tag == "minecart"){
                 if (Input.GetKeyDown(KeyCode.E)){
+                    audioManager.Play("Use1");
                     minecartInventory.SetActive(true);
                     playerInventory.OpenInventory();
                     break;
@@ -75,20 +79,24 @@ public class PlayerTriggerFunctions : MonoBehaviour
                 actionInfo.text = "E) Open minecart inventory";
             }
             if (randomobject.tag == "bed"){
+                actionInfo.text = "E) Sleep";
                 if (Input.GetKeyDown(KeyCode.E) || playerMovement.actionHappening){
                     bedScript.Sleep();
+                    actionInfo.text = "";
                     break;
                 }
-                actionInfo.text = "E) Sleep";
+                
             }
             if (randomobject.tag == "plantplot"){
                 if (Input.GetKeyDown(KeyCode.E) && randomobject.GetComponent<Plantplot>().Harvestable()){
                     randomobject.GetComponent<Plantplot>().Harvest();
+                    audioManager.Play("Use3");
                     break;
                 }
                 if (Input.GetKeyDown(KeyCode.E) && !randomobject.GetComponent<Plantplot>().Harvestable()){
                     randomobject.GetComponent<Plantplot>().OpenPlantPlotMenu();
                     playerInventory.OpenInventory();
+                    audioManager.Play("Use2");
                 }
                 actionInfo.text = "E) Open plantpot inventory";
             }
@@ -97,20 +105,24 @@ public class PlayerTriggerFunctions : MonoBehaviour
             if (randomobject.tag == "enterhousemaster"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(MasterHousePosition.position.x, MasterHousePosition.position.y, 0);
+                    audioManager.Play("Use3");
                 }
                 actionInfo.text = "E) Enter house of an old friend";
             }
             if (randomobject.tag == "exithousemaster"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(MasterHouseExitPosition.position.x, MasterHouseExitPosition.position.y, 0);
+                    audioManager.Play("Use3");
                 }
                 actionInfo.text = "E) Exit house";
                 
             }
             if (randomobject.tag == "masternpc"){
+                actionInfo.text = "E) Open Ability Shop\nC) Start Dialog";
                 Dialogue dialogue = randomobject.GetComponent<Dialogue>();
+                
                 if (dialogue.IsDialogActive()){
-                    actionInfo.text = "";
+                    actionInfo.text = "C) Skip";
                 }
                 if (Input.GetKeyDown(KeyCode.E)){
                     if (SkillShop.activeSelf){
@@ -118,6 +130,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     }
                     else if (!SkillShop.activeSelf && !dialogue.IsDialogActive()){
                         SkillShop.SetActive(true);
+                        audioManager.Play("Use2");
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.C)){
@@ -134,7 +147,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
                         }
                     }
                 }
-                actionInfo.text = "E) Open Ability Shop\nC) Start Dialog";
+                
             }
 
 
@@ -142,7 +155,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
             if (randomobject.tag == "enterhousebotanist"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(BotanistHousePosition.position.x, BotanistHousePosition.position.y, 0);
-                    
+                    audioManager.Play("Use3");
                 }
                 actionInfo.text = "E) Enter house of the botanist";
                 
@@ -150,14 +163,16 @@ public class PlayerTriggerFunctions : MonoBehaviour
             if (randomobject.tag == "exithousebotanist"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(BotanistExitPosition.position.x, BotanistExitPosition.position.y, 0);
+                    audioManager.Play("Use3");
                 }
                 actionInfo.text = "E) Exit house";
                 
             }
             if (randomobject.tag == "botanistnpc"){
+                actionInfo.text = "E) Open Shop\nC) Start Dialog";
                 Dialogue dialogue = randomobject.GetComponent<Dialogue>();
                 if (dialogue.IsDialogActive()){
-                    actionInfo.text = "";
+                    actionInfo.text = "C) Skip";
                 }
                 if (Input.GetKeyDown(KeyCode.E)){
                     if (BotanistShop.activeSelf){
@@ -166,6 +181,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     else if (!SkillShop.activeSelf && !dialogue.IsDialogActive()){
                         BotanistShop.SetActive(true);
                         playerInventory.OpenInventory();
+                        audioManager.Play("Use3");
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.C)){
@@ -182,12 +198,13 @@ public class PlayerTriggerFunctions : MonoBehaviour
                         }
                     }
                 }
-                actionInfo.text = "E) Open Shop\nC) Start Dialog";
+
             }
             if (randomobject.tag == "sign"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     if (!SignUI.activeSelf){
                         SignUI.SetActive(true);
+                        audioManager.Play("Use3");
                     } 
                     else{
                         if (!firstTimeSign){
