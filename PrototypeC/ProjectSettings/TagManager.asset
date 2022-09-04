@@ -22,6 +22,7 @@ TagManager:
   - enterhousebotanist
   - exithousebotanist
   - sign
+  - radio
   layers:
   - Default
   - TransparentFX

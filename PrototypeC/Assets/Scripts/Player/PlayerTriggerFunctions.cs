@@ -109,6 +109,9 @@ public class PlayerTriggerFunctions : MonoBehaviour
             }
             if (randomobject.tag == "masternpc"){
                 Dialogue dialogue = randomobject.GetComponent<Dialogue>();
+                if (dialogue.IsDialogActive()){
+                    actionInfo.text = "";
+                }
                 if (Input.GetKeyDown(KeyCode.E)){
                     if (SkillShop.activeSelf){
                         SkillShop.SetActive(false);
@@ -153,6 +156,9 @@ public class PlayerTriggerFunctions : MonoBehaviour
             }
             if (randomobject.tag == "botanistnpc"){
                 Dialogue dialogue = randomobject.GetComponent<Dialogue>();
+                if (dialogue.IsDialogActive()){
+                    actionInfo.text = "";
+                }
                 if (Input.GetKeyDown(KeyCode.E)){
                     if (BotanistShop.activeSelf){
                         BotanistShop.SetActive(false);
@@ -193,6 +199,23 @@ public class PlayerTriggerFunctions : MonoBehaviour
                 }
                 actionInfo.text = "E) Read Sign (Seems important)";
             }
+
+            if (randomobject.tag == "radio"){
+
+                if (randomobject.GetComponent<Radio>().IsTurnedOn()){
+                    actionInfo.text = "E) Turn off radio";
+                    if (Input.GetKeyDown(KeyCode.E)){
+                        randomobject.GetComponent<Radio>().TurnOffRadio();
+                    }
+                    
+                } else{
+                    actionInfo.text = "E) Turn On Radio";
+                    if (Input.GetKeyDown(KeyCode.E)){
+                        randomobject.GetComponent<Radio>().TurnOnRadio();
+                    }
+                }
+                
+            }
             
         }
     }
@@ -220,7 +243,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
         }
         if (collider.tag == "sign"){
             if (!firstTimeSign){
-                Destroy(randomobject.transform.Find("ExclamationSign").gameObject);
+                Destroy(collider.transform.Find("ExclamationSign").gameObject);
                 firstTimeSign = true;
             }
             SignUI.SetActive(false);

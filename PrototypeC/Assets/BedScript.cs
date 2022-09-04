@@ -10,6 +10,8 @@ public class BedScript : MonoBehaviour
     public GameObject minecart;
     public GameObject fadePanel;
     public PlantpotManager plantpotManager;
+    public Radio radio;
+    float originalVolume;
     bool executeOnce;
     Image fadeImage;
     float illuminationValue;
@@ -38,9 +40,11 @@ public class BedScript : MonoBehaviour
         
         if (!player.GetComponent<PlayerMovement>().actionHappening){
             player.GetComponent<PlayerMovement>().actionHappening = true;
-            fadePanel.SetActive(true);   
+            fadePanel.SetActive(true);
+            originalVolume = radio.ActualSongPlaying().volume;
         }
         if (timer<sleepingDuration/2){
+            radio.ActualSongPlaying().volume = (-originalVolume/(sleepingDuration/2f)) * timer + originalVolume;
             int a = (int)((255/((sleepingDuration/2)))*timer);
             fadeImage.color = new Color32(0, 0, 0, (byte)(a));
             minecart.transform.position = new Vector3(minecart.transform.position.x, minecart.transform.position.y + (minecartAnimationSpeed * Time.deltaTime), 0);
@@ -54,9 +58,10 @@ public class BedScript : MonoBehaviour
                 minecart.GetComponent<MinecartInventory>().CleanInventoryAndPayPlayer(player);
                 plantpotManager.NextStateOnEverySeed();
                 executeOnce = true;
+                player.GetComponent<PlayerData>().energy = player.GetComponent<PlayerData>().maxEnergy;
             }
-            player.GetComponent<PlayerData>().energy = player.GetComponent<PlayerData>().maxEnergy;
-            
+
+            radio.ActualSongPlaying().volume = (originalVolume/(sleepingDuration-(sleepingDuration/2f)))*timer - (originalVolume);
             int a = (int)((-255/(sleepingDuration-(sleepingDuration/2)))*timer) + (255*2);
             fadeImage.color = new Color32(0, 0, 0, (byte)(a));
         }
@@ -67,6 +72,7 @@ public class BedScript : MonoBehaviour
             timer = 0;
             executeOnce = false;
             fadePanel.SetActive(false);
+            radio.ActualSongPlaying().volume = originalVolume;
         }
     }
 }

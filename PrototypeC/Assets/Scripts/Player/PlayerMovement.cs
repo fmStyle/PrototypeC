@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject buildingObject;
     private GameObject constructableItem;
     public Camera mainCamera;
+    public AudioManager audioManager;
     // HashSet<GameObject> objectsTouchingBuildingObject;
     public float acceleration;
     public float maxVelocity;
@@ -64,6 +65,9 @@ public class PlayerMovement : MonoBehaviour
                     building = false;
                 }
             }
+        }
+        if (rigidbody.velocity.magnitude < 0.1f){
+            audioManager.Play("Walking");
         }
         SetAnimations();
     }
