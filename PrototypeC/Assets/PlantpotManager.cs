@@ -41,4 +41,7 @@ public class PlantpotManager : MonoBehaviour
         }
         return null;
     }
+    public void EraseSeed(Seed seed){
+        seeds.Remove(seed);
+    }
 }

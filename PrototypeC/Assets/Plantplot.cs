@@ -79,6 +79,10 @@ public class Plantplot : MonoBehaviour
             Instantiate(drop, transform.position, Quaternion.identity);
         }
         transform.Find("Seed").GetComponent<Seed>().Harvest();
-        if (seed != null) Destroy(seed);
+        if (seed != null) {
+            Destroy(seed);
+            Seed childSeed = transform.Find("Seed").GetComponent<Seed>();
+            plantpotManager.EraseSeed(childSeed.GetComponent<Seed>());
+        }
     }
 }

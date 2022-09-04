@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float friction;
     public float desacceleration;
     public float velocityLevelScaling;
-    public float miningSpeed = 1.0f;
+    public float miningSpeed = 2.0f;
     private float miningTimer;
     private bool mining;
     public bool actionHappening;
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         playerData = GetComponent<PlayerData>();
         animator = GetComponent<Animator>();
+        CalculateMiningSpeed();
     }
 
     void Update(){
@@ -100,11 +101,16 @@ public class PlayerMovement : MonoBehaviour
         velocity *= desacceleration;
         rigidbody.velocity = velocity;
     }
+    public void CalculateMiningSpeed(){
+        int pickaxeAbilityLevel = playerData.pickaxeAbilityLevel;
+        miningSpeed = miningSpeed - 1/(pickaxeAbilityLevel*pickaxeAbilityLevel);
+    }
     public void Mine(GameObject boulder){
+        
         if (!building){
             if (mining == true) return;
             mining = true;
-            miningTimer = miningSpeed - ((1/4)*playerData.pickaxeAbilityLevel);
+            miningTimer = miningSpeed;
             miningBoulder = boulder;
         }
     }
@@ -112,9 +118,10 @@ public class PlayerMovement : MonoBehaviour
     public bool CheckMining(){
         if (mining){
             miningTimer -= Time.deltaTime;
+            Debug.Log(miningTimer);
             if (miningTimer <= 0.0f){
                 mining = false;
-                miningTimer = 1.0f;
+                miningTimer = miningSpeed;
 
                 return true;
             }
@@ -138,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetAnimations(){
         if (!mining){
-            if (rigidbody.velocity.x > 0.05){
+            if (rigidbody.velocity.x > 0.03){
                 if (runningLeft){
                     Vector3 localTransform = transform.localScale;
                     localTransform.x = Mathf.Abs(localTransform.x);
@@ -148,21 +155,21 @@ public class PlayerMovement : MonoBehaviour
                 animator.Play("RunningSide");
                 
             }
-            else if (rigidbody.velocity.x < -0.05){
+            else if (rigidbody.velocity.x < -0.03){
                 if (!runningLeft){
                     Vector3 localTransform = transform.localScale;
                     localTransform.x = localTransform.x * (-1);
                     transform.localScale = localTransform;
-                    runningLeft = true;
+                    
                     animator.Play("RunningSide");
                 }
+                runningLeft = true;
                 
             }
-            else if (Mathf.Abs(rigidbody.velocity.x) < 0.1 && Mathf.Abs(rigidbody.velocity.y) > 0.1){
+            else if (Mathf.Abs(rigidbody.velocity.x) < 0.3 && Mathf.Abs(rigidbody.velocity.y) > 0.03){
                 animator.Play("RunningUp");
             }
             else{
-                runningLeft = false;
                 animator.Play("Idle");
             }
         } else{

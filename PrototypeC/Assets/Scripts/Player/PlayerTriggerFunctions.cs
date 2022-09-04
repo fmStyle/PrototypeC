@@ -254,9 +254,11 @@ public class PlayerTriggerFunctions : MonoBehaviour
         }
         if (collider.tag == "masternpc"){
             SkillShop.SetActive(false);
+            playerInventory.CloseInventory();
         }
         if (collider.tag == "botanistnpc"){
             BotanistShop.SetActive(false);
+            playerInventory.CloseInventory();
         }
         if (collider.tag == "sign"){
             if (!firstTimeSign){

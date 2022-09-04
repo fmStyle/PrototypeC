@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7674856863890448399}
   - component: {fileID: 7674856863890448386}
   - component: {fileID: -4859834544565485013}
+  - component: {fileID: 4859054837595860703}
   m_Layer: 0
   m_Name: Diamond Drop
   m_TagString: drop
@@ -107,7 +108,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7674856863890448386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004113525, y: -0.0031411238}
+  m_Offset: {x: 0.000046521425, y: -0.008813307}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -146,5 +147,41 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2078633, y: 0.18617252}
+  m_Size: {x: 0.30079728, y: 0.23258129}
   m_EdgeRadius: 0
+--- !u!60 &4859054837595860703
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7674856863890448398}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.031031305, y: 0.06659301}
+      - {x: -0.040405188, y: 0.066593036}
+      - {x: -0.0810313, y: 0.04484347}
+      - {x: -0.077937394, y: -0.010718244}
+      - {x: -0.051867574, y: -0.034210276}
+      - {x: -0.02381218, y: -0.08309389}
+      - {x: 0.03, y: -0.08}
+      - {x: 0.039686963, y: -0.06587479}
+      - {x: 0.051547796, y: -0.039332006}
+      - {x: 0.07793735, y: -0.0138121545}
+      - {x: 0.0820626, y: 0.05143649}

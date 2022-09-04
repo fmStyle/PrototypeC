@@ -122,6 +122,7 @@ public class PlayerData : MonoBehaviour
             playerDataAux.pickaxeLevelUpPrice += playerDataAux.pickaxeLevelUpPrice/4.0f;
         }
         playerDataAux.UpdateStrings();
+        player.GetComponent<PlayerMovement>().CalculateMiningSpeed();
         GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
     }
     public void LevelUpLuck(){

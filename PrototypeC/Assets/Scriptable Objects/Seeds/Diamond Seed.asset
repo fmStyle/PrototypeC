@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc240674bbd44011b19e6e9311ad334, type: 3}
   m_Name: Diamond Seed
   m_EditorClassIdentifier: 
-  id: 0
-  spriteState0: {fileID: 0}
-  spriteState1: {fileID: 0}
-  spriteState2: {fileID: 0}
-  spriteState3: {fileID: 0}
+  id: 2
+  spriteState0: {fileID: 21300000, guid: bb652b32cf0d042e887f1fe2ddeb75d8, type: 3}
+  spriteState1: {fileID: 21300000, guid: cdc6bbb50f8994c62a1134b960980490, type: 3}
+  spriteState2: {fileID: 21300000, guid: 68eed985a8db84473a3d99d335fa93ec, type: 3}
+  spriteState3: {fileID: 21300000, guid: 108b63914303c41c496ec3b2a78f1b0c, type: 3}

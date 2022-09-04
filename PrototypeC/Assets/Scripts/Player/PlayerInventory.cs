@@ -102,7 +102,7 @@ public class PlayerInventory : MonoBehaviour
         newItemUI.GetComponent<ItemUI>().item = newItemData;
         newItemUI.GetComponent<ItemUI>().whereNow = "inventory";
         playerInventoryUI.Add(newItemUI);
-        audioManager.Play("Use3");
+        audioManager.Play("Use1");
         // EnableItemsRemove();
     }
 

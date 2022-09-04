@@ -10,6 +10,7 @@ public class OnDropManagerInventory : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData){
         if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<ItemUI>() != null){
             eventData.pointerDrag.transform.parent = gameObject.transform.Find("Viewport").transform.Find("Content").transform;
+            FindObjectOfType<AudioManager>().Play("Use1");
             if (eventData.pointerDrag.GetComponent<ItemUI>().whereNow != "inventory"){
                 player.GetComponent<PlayerInventory>().AddItem(eventData.pointerDrag);
                 minecart.GetComponent<MinecartInventory>().RemoveItem(eventData.pointerDrag);

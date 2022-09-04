@@ -34,7 +34,7 @@ public class BedScript : MonoBehaviour
         minecartAnimationAccelerationOriginal = minecartAnimationAcceleration;
         minecartAnimationSpeedOriginal = minecartAnimationSpeed;
         minecartPosition = new Vector2(minecart.transform.position.x, minecart.transform.position.y);
-        fadePanel.SetActive(false);
+        // fadePanel.SetActive(false);
     }
     public void Sleep(){
         

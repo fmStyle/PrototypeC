@@ -17,8 +17,11 @@ public class Seed : MonoBehaviour
         planted = true;
         actualState = 0;
         spriteRenderer.sprite = plantedSeed.spriteState0;
+        Debug.Log(actualState);
+        
     }
     public void NextState(){
+        Debug.Log(actualState);
         if (actualState == 3) return;
         switch(ActualState()){
             case (0):
@@ -49,5 +52,6 @@ public class Seed : MonoBehaviour
         actualState = -1;
         planted = false;
         spriteRenderer.sprite = null;
+        
     }
 }
