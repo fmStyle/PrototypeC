@@ -128,6 +128,7 @@ public class PlayerInventory : MonoBehaviour
     }
     /// This is a function meant to be accesed by a button, that's why I get the player again
     public void BuyItem(GameObject item){
+        
         GameObject player = GameObject.FindWithTag("player");
         PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
         ItemData newItemData = item.GetComponent<ItemUI>().item;
@@ -136,14 +137,15 @@ public class PlayerInventory : MonoBehaviour
             playerInventory.RemoveMoney(itemPrice);
             playerInventory.AddItem(item);
         }
-        
     }
 
     public void AddMoney(float amount){
         money += amount;
+        GetComponent<PlayerData>().UpdateStrings();
     }
     public void RemoveMoney(float amount){
         money -= amount;
+        GetComponent<PlayerData>().UpdateStrings();
     }
 
     public float Money(){

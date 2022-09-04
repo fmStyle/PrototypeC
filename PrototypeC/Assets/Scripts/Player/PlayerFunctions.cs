@@ -23,7 +23,7 @@ public class PlayerFunctions : MonoBehaviour
 
     public void Mine(GameObject boulder){
         BoulderData boulderData = boulder.GetComponent<BoulderData>();
-        if (playerData.strengthLevel < boulderData.necessaryStrength) return;
+        if (playerData.strengthLevel < boulderData.necessaryStrength || playerData.energy <= 0) return;
         
         playerMovement.Mine(boulder);
     }

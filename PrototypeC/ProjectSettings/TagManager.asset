@@ -21,6 +21,7 @@ TagManager:
   - botanistnpc
   - enterhousebotanist
   - exithousebotanist
+  - sign
   layers:
   - Default
   - TransparentFX

@@ -132,32 +132,36 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void SetAnimations(){
-        if (rigidbody.velocity.x > 0.05){
-            if (runningLeft){
-                Vector3 localTransform = transform.localScale;
-                localTransform.x = Mathf.Abs(localTransform.x);
-                transform.localScale = localTransform;
-            }
-            runningLeft = false;
-            animator.Play("RunningSide");
-            
-        }
-        else if (rigidbody.velocity.x < -0.05){
-            if (!runningLeft){
-                Vector3 localTransform = transform.localScale;
-                localTransform.x = localTransform.x * (-1);
-                transform.localScale = localTransform;
-                runningLeft = true;
+        if (!mining){
+            if (rigidbody.velocity.x > 0.05){
+                if (runningLeft){
+                    Vector3 localTransform = transform.localScale;
+                    localTransform.x = Mathf.Abs(localTransform.x);
+                    transform.localScale = localTransform;
+                }
+                runningLeft = false;
                 animator.Play("RunningSide");
+                
             }
-            
-        }
-        else if (Mathf.Abs(rigidbody.velocity.x) < 0.1 && Mathf.Abs(rigidbody.velocity.y) > 0.1){
-            animator.Play("RunningUp");
-        }
-        else{
-            runningLeft = false;
-            animator.Play("Idle");
+            else if (rigidbody.velocity.x < -0.05){
+                if (!runningLeft){
+                    Vector3 localTransform = transform.localScale;
+                    localTransform.x = localTransform.x * (-1);
+                    transform.localScale = localTransform;
+                    runningLeft = true;
+                    animator.Play("RunningSide");
+                }
+                
+            }
+            else if (Mathf.Abs(rigidbody.velocity.x) < 0.1 && Mathf.Abs(rigidbody.velocity.y) > 0.1){
+                animator.Play("RunningUp");
+            }
+            else{
+                runningLeft = false;
+                animator.Play("Idle");
+            }
+        } else{
+            animator.Play("Mining");
         }
     }
 

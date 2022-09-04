@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerTriggerFunctions : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerTriggerFunctions : MonoBehaviour
     public Transform BotanistHousePosition;
     public Transform BotanistExitPosition;
 
+    public TextMeshProUGUI actionInfo;
+
+    public GameObject SignUI;
+    bool firstTimeSign;
     PlayerInventory playerInventory;
     PlayerData playerData;
     PlayerMovement playerMovement;
@@ -23,15 +28,20 @@ public class PlayerTriggerFunctions : MonoBehaviour
 
     void Start()
     {
+        firstTimeSign = false;
         objectsTouchingPlayer = new HashSet<GameObject>();
         playerFunctions = GetComponent<PlayerFunctions>();
         playerInventory = GetComponent<PlayerInventory>();
         playerData = GetComponent<PlayerData>();
         playerMovement = GetComponent<PlayerMovement>();
+        actionInfo.text = "";
     }
 
     void Update()
     {
+        if (objectsTouchingPlayer.Count == 0){
+            actionInfo.text = "";
+        }
         foreach (GameObject randomobject in objectsTouchingPlayer)
         {
             /// Normal Interactions
@@ -41,6 +51,12 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     playerFunctions.Mine(randomobject);
                     break;
                 }
+                if (playerData.strengthLevel >= randomobject.GetComponent<BoulderData>().necessaryStrength){
+                    actionInfo.text = "E) Mine Boulder";
+                } else{
+                    actionInfo.text = "E) Not enough strenght level (Necessary " + randomobject.GetComponent<BoulderData>().necessaryStrength.ToString() + ")";
+                }
+                
             }
             if (randomobject.tag == "drop"){
                 if (Input.GetKeyDown(KeyCode.E)){
@@ -48,6 +64,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     if (randomobject != null) Destroy(randomobject);
                     break;
                 }
+                actionInfo.text = "E) Collect " + randomobject.GetComponent<Drop>().itemdata.name;
             }
             if (randomobject.tag == "minecart"){
                 if (Input.GetKeyDown(KeyCode.E)){
@@ -55,12 +72,14 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     playerInventory.OpenInventory();
                     break;
                 }
+                actionInfo.text = "E) Open minecart inventory";
             }
             if (randomobject.tag == "bed"){
                 if (Input.GetKeyDown(KeyCode.E) || playerMovement.actionHappening){
                     bedScript.Sleep();
                     break;
                 }
+                actionInfo.text = "E) Sleep";
             }
             if (randomobject.tag == "plantplot"){
                 if (Input.GetKeyDown(KeyCode.E) && randomobject.GetComponent<Plantplot>().Harvestable()){
@@ -71,20 +90,21 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     randomobject.GetComponent<Plantplot>().OpenPlantPlotMenu();
                     playerInventory.OpenInventory();
                 }
+                actionInfo.text = "E) Open plantpot inventory";
             }
 
             /// Master
             if (randomobject.tag == "enterhousemaster"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(MasterHousePosition.position.x, MasterHousePosition.position.y, 0);
-                    
                 }
-                
+                actionInfo.text = "E) Enter house of an old friend";
             }
             if (randomobject.tag == "exithousemaster"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(MasterHouseExitPosition.position.x, MasterHouseExitPosition.position.y, 0);
                 }
+                actionInfo.text = "E) Exit house";
                 
             }
             if (randomobject.tag == "masternpc"){
@@ -111,6 +131,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
                         }
                     }
                 }
+                actionInfo.text = "E) Open Ability Shop\nC) Start Dialog";
             }
 
 
@@ -120,12 +141,14 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     transform.position = new Vector3(BotanistHousePosition.position.x, BotanistHousePosition.position.y, 0);
                     
                 }
+                actionInfo.text = "E) Enter house of the botanist";
                 
             }
             if (randomobject.tag == "exithousebotanist"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(BotanistExitPosition.position.x, BotanistExitPosition.position.y, 0);
                 }
+                actionInfo.text = "E) Exit house";
                 
             }
             if (randomobject.tag == "botanistnpc"){
@@ -136,6 +159,7 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     }
                     else if (!SkillShop.activeSelf && !dialogue.IsDialogActive()){
                         BotanistShop.SetActive(true);
+                        playerInventory.OpenInventory();
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.C)){
@@ -152,6 +176,22 @@ public class PlayerTriggerFunctions : MonoBehaviour
                         }
                     }
                 }
+                actionInfo.text = "E) Open Shop\nC) Start Dialog";
+            }
+            if (randomobject.tag == "sign"){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    if (!SignUI.activeSelf){
+                        SignUI.SetActive(true);
+                    } 
+                    else{
+                        if (!firstTimeSign){
+                            Destroy(randomobject.transform.Find("ExclamationSign").gameObject);
+                            firstTimeSign = true;
+                        }
+                        SignUI.SetActive(false);
+                    }
+                }
+                actionInfo.text = "E) Read Sign (Seems important)";
             }
             
         }
@@ -177,6 +217,13 @@ public class PlayerTriggerFunctions : MonoBehaviour
         }
         if (collider.tag == "botanistnpc"){
             BotanistShop.SetActive(false);
+        }
+        if (collider.tag == "sign"){
+            if (!firstTimeSign){
+                Destroy(randomobject.transform.Find("ExclamationSign").gameObject);
+                firstTimeSign = true;
+            }
+            SignUI.SetActive(false);
         }
     }
 }
