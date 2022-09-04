@@ -11,7 +11,7 @@ public class BuildingObject : MonoBehaviour
     BoxCollider2D boxcollider;
     PolygonCollider2D polygoncollider;
     HashSet<GameObject> objectsTouchingBuildingObject;
-    Color32 originalColor;
+    // Color32 originalColor;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class BuildingObject : MonoBehaviour
         objectsTouchingBuildingObject = new HashSet<GameObject>();
         int LayerBuilding = LayerMask.NameToLayer("Building Object");
         gameObject.layer = LayerBuilding;
-        originalColor = GetComponent<SpriteRenderer>().color;
+        // originalColor = GetComponent<SpriteRenderer>().color;
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class BuildingObject : MonoBehaviour
         polygoncollider.enabled = true;
         int LayerDefault = LayerMask.NameToLayer("Default");
         gameObject.layer = LayerDefault;
-        GetComponent<SpriteRenderer>().color = originalColor;
+        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         Destroy(this);
     }
 }

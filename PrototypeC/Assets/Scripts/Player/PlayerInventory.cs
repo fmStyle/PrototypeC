@@ -126,6 +126,18 @@ public class PlayerInventory : MonoBehaviour
             playerInventory.Remove(item.GetComponent<ItemUI>().item);
         }
     }
+    /// This is a function meant to be accesed by a button, that's why I get the player again
+    public void BuyItem(GameObject item){
+        GameObject player = GameObject.FindWithTag("player");
+        PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
+        ItemData newItemData = item.GetComponent<ItemUI>().item;
+        float itemPrice = newItemData.costToBuyFromNPC;
+        if (playerInventory.Money() >= itemPrice){
+            playerInventory.RemoveMoney(itemPrice);
+            playerInventory.AddItem(item);
+        }
+        
+    }
 
     public void AddMoney(float amount){
         money += amount;
@@ -134,10 +146,15 @@ public class PlayerInventory : MonoBehaviour
         money -= amount;
     }
 
+    public float Money(){
+        return money;
+    }
+
     public void OpenInventory(){
         inventoryUI.SetActive(true);
     }
     public void CloseInventory(){
         inventoryUI.SetActive(false);
     }
+
 }

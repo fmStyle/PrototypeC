@@ -17,5 +17,6 @@ MonoBehaviour:
   description: After the big war, this chunk of dirt became really valuable
   type: constructable
   cost: 0
-  costToSellToNPC: 50
-  sprite: {fileID: 0}
+  costToSellToNPC: 20
+  costToBuyFromNPC: 100
+  sprite: {fileID: 21300000, guid: 58f82989793e146afaf7ec3f55ba0e13, type: 3}

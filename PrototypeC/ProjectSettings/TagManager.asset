@@ -13,6 +13,10 @@ TagManager:
   - bed
   - plantplot
   - plantplot manager
+  - masternpc
+  - enterhousemaster
+  - exithousemaster
+  - torch
   layers:
   - Default
   - TransparentFX

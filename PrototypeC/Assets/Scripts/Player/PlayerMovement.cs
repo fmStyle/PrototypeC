@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0)){
                 if (!buildingObject.GetComponent<BuildingObject>().IsObstructing()){
-                    // buildingObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+                    buildingObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
                     GetComponent<PlayerInventory>().RemoveItem(constructableItem);
                     buildingObject.GetComponent<BuildingObject>().FinishedBuilding();
                     building = false;
@@ -117,6 +117,13 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<PlayerInventory>().CloseInventory();
         buildingObject = objectToBuild;
         this.constructableItem = constructableItem;
+    }
+
+    public void EnterActionHappening(){
+        actionHappening = true;
+    }
+    public void ExitActionHappening(){
+        actionHappening = false;
     }
 
     // void OnTriggerEnter2D(Collider2D collider){

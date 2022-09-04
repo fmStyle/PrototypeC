@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,12 +103,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7040344f1b37140869149ba6419e0b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   acceleration: 2
   maxVelocity: 5
   friction: 0.3
   desacceleration: 0.85
   velocityLevelScaling: 0.2
   miningSpeed: 1
+  actionHappening: 0
+  building: 0
 --- !u!50 &3470127519939724584
 Rigidbody2D:
   serializedVersion: 4
@@ -148,7 +151,8 @@ MonoBehaviour:
   botanistLevel: 1
   pickaxeAbilityLevel: 1
   luckLevel: 1
-  money: 0
+  maxEnergy: 0
+  energy: 0
 --- !u!114 &3470127519939724562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc486f745f6e42aaa2a0b14f64b31b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minecartInventory: {fileID: 0}
+  bedScript: {fileID: 0}
 --- !u!61 &3470127519939724561
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,3 +218,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: []
+  playerInventoryUI: []
+  inventoryUI: {fileID: 0}
+  itemInventoryUI: {fileID: 0}
+  prefabsConstructableItems: []
+  itemParentForUI: {fileID: 0}
+  EnableRemove: {fileID: 0}
+  money: 0

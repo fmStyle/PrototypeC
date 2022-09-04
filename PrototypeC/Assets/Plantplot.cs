@@ -7,6 +7,7 @@ using TMPro;
 public class Plantplot : MonoBehaviour
 {
     GameObject seed;
+    private bool dragDestroyed;
     public GameObject plantPlotMenu;
     GameObject newPlantPlotMenu;
     GameObject drop;
@@ -18,6 +19,7 @@ public class Plantplot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dragDestroyed = false;
         plantpotManager = GameObject.FindWithTag("plantplot manager").GetComponent<PlantpotManager>();
         newPlantPlotMenu = Instantiate(plantPlotMenu, plantPlotMenu.transform.position, Quaternion.identity);
         newPlantPlotMenu.transform.parent = GameObject.FindWithTag("canvas").transform;
@@ -31,11 +33,18 @@ public class Plantplot : MonoBehaviour
         // newPlantPlotMenu.transform.position = new Vector3(300, 0, 0);
     }
 
+    void Update(){
+        if (AlreadyHasSeed() && !dragDestroyed) {
+            Destroy(seed.GetComponent<DragAndDrop>());
+            dragDestroyed = true;
+        }
+    }
+
     // Update is called once per frame
     public void AddSeed(GameObject itemUI){
         if (AlreadyHasSeed()) return;
         seed = itemUI;
-        Destroy(seed.GetComponent<DragAndDrop>());
+        
         int itemID = itemUI.GetComponent<ItemUI>().item.id;
         SeedData seedData = plantpotManager.GetSeedDataWithID(itemID);
         drop = plantpotManager.GetDropWithID(itemID);
@@ -46,6 +55,7 @@ public class Plantplot : MonoBehaviour
         plantpotManager.AddSeed(childSeed);
 
     }
+
     public bool AlreadyHasSeed(){
         if (seed == null) return false;
         else              return true;

@@ -27,10 +27,9 @@ public class DragAndDrop : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     }
 
     public void OnEndDrag(PointerEventData eventData){
-        
+        canvasGroup.alpha = 1.0f;
         canvasGroup.blocksRaycasts = true;
         transform.position = originalPos;
-        canvasGroup.alpha = 1.0f;
     }
 
 

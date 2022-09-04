@@ -8,6 +8,9 @@ public class PlayerTriggerFunctions : MonoBehaviour
     HashSet<GameObject> objectsTouchingPlayer;
     PlayerFunctions playerFunctions;
     public GameObject minecartInventory;
+    public GameObject SkillShop;
+    public Transform MasterHousePosition;
+    public Transform MasterHouseExitPosition;
     PlayerInventory playerInventory;
     PlayerData playerData;
     PlayerMovement playerMovement;
@@ -64,6 +67,46 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     playerInventory.OpenInventory();
                 }
             }
+            if (randomobject.tag == "enterhousemaster"){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    transform.position = new Vector3(MasterHousePosition.position.x, MasterHousePosition.position.y, 0);
+                    
+                }
+                
+            }
+            if (randomobject.tag == "exithousemaster"){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    // Transform enterHouse = GameObject.FindWithTag("enterhousemaster").transform;
+                    transform.position = new Vector3(MasterHouseExitPosition.position.x, MasterHouseExitPosition.position.y, 0);
+                }
+                
+            }
+
+            if (randomobject.tag == "masternpc"){
+                Dialogue dialogue = randomobject.GetComponent<Dialogue>();
+                if (Input.GetKeyDown(KeyCode.E)){
+                    if (SkillShop.activeSelf){
+                        SkillShop.SetActive(false);
+                    }
+                    else if (!SkillShop.activeSelf && !dialogue.IsDialogActive()){
+                        SkillShop.SetActive(true);
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.C)){
+                    if (!dialogue.ConversationStarted() && !SkillShop.activeSelf){
+                        playerMovement.EnterActionHappening();
+                        dialogue.StartDialogue();
+                    }
+                    else if (dialogue.ConversationStarted() && !dialogue.LineEnded()){
+                        dialogue.EndLine();
+                    }
+                    else if (dialogue.ConversationStarted() && dialogue.LineEnded()){
+                        if(dialogue.NextDialogueLine()) {
+                            playerMovement.ExitActionHappening();
+                        }
+                    }
+                }
+            }
             
         }
     }
@@ -82,6 +125,9 @@ public class PlayerTriggerFunctions : MonoBehaviour
         if (collider.tag == "plantplot"){
             collider.GetComponent<Plantplot>().ClosePlantPlotMenu();
             playerInventory.CloseInventory();
+        }
+        if (collider.tag == "masternpc"){
+            SkillShop.SetActive(false);
         }
     }
 }

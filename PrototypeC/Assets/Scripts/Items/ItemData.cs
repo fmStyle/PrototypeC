@@ -11,5 +11,6 @@ public class ItemData : ScriptableObject
     public string type;
     public float cost;
     public float costToSellToNPC;
+    public float costToBuyFromNPC;
     public Sprite sprite;
 }

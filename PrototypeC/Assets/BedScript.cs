@@ -32,10 +32,14 @@ public class BedScript : MonoBehaviour
         minecartAnimationAccelerationOriginal = minecartAnimationAcceleration;
         minecartAnimationSpeedOriginal = minecartAnimationSpeed;
         minecartPosition = new Vector2(minecart.transform.position.x, minecart.transform.position.y);
+        fadePanel.SetActive(false);
     }
     public void Sleep(){
         
-        player.GetComponent<PlayerMovement>().actionHappening = true;
+        if (!player.GetComponent<PlayerMovement>().actionHappening){
+            player.GetComponent<PlayerMovement>().actionHappening = true;
+            fadePanel.SetActive(true);   
+        }
         if (timer<sleepingDuration/2){
             int a = (int)((255/((sleepingDuration/2)))*timer);
             fadeImage.color = new Color32(0, 0, 0, (byte)(a));
@@ -62,6 +66,7 @@ public class BedScript : MonoBehaviour
             player.GetComponent<PlayerMovement>().actionHappening = false;
             timer = 0;
             executeOnce = false;
+            fadePanel.SetActive(false);
         }
     }
 }

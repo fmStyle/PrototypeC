@@ -27,7 +27,7 @@ public class BoulderGenerationManager : MonoBehaviour
             int randomValue = Random.Range(0, totalPossibilities);
             for (int j = 0; j<Ranges.Count; ++j){
                 if (randomValue >= Ranges[j].a && randomValue < Ranges[j].b){
-                    GameObject newBoulder = Instantiate(GenerableBoulders[j], new Vector2(Random.Range(6, 70), Random.Range(-6, -70)), Quaternion.identity);
+                    GameObject newBoulder = Instantiate(GenerableBoulders[j], new Vector2(Random.Range(-9, 50), Random.Range(-4, -48)), Quaternion.identity);
                     newBoulder.transform.parent = gameObject.transform;
                     break;
                 }

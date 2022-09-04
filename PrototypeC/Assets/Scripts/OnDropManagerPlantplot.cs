@@ -13,7 +13,6 @@ public class OnDropManagerPlantplot : MonoBehaviour, IDropHandler
             eventData.pointerDrag.transform.parent = gameObject.transform.Find("Container").transform;
             if (eventData.pointerDrag.GetComponent<ItemUI>().whereNow != "plantplot"){
                 plantplot.GetComponent<Plantplot>().AddSeed(eventData.pointerDrag);
-                
                 // player.GetComponent<PlayerInventory>().RemoveItem(eventData.pointerDrag);
 
             }
