@@ -64,6 +64,6 @@ public class MinecartInventory : MonoBehaviour
         }
         minecartInventoryUI.Clear();
         minecartInventory.Clear();
-        earningsText.GetComponent<TextMeshProUGUI>().text = "Earnings: " + this.Earnings().ToString();
+        player.GetComponent<PlayerData>().UpdateStrings();
     }
 }

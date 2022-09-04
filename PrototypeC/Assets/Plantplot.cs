@@ -75,7 +75,7 @@ public class Plantplot : MonoBehaviour
         }
     }
     public void Harvest(){
-        for (int i=2; i<Random.Range(3, 5); ++i){
+        for (int i=2; i<Random.Range(3, 4 + GameObject.FindWithTag("player").GetComponent<PlayerData>().botanistLevel); ++i){
             Instantiate(drop, transform.position, Quaternion.identity);
         }
         transform.Find("Seed").GetComponent<Seed>().Harvest();

@@ -22,11 +22,14 @@ public class PlayerMovement : MonoBehaviour
     private bool mining;
     public bool actionHappening;
     public bool building;
+    Animator animator;
+    bool runningLeft;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        runningLeft = false;
         // objectsTouchingBuildingObject = new HashSet<GameObject>();
         mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         building = false;
@@ -34,13 +37,14 @@ public class PlayerMovement : MonoBehaviour
         actionHappening = false;
         rigidbody = GetComponent<Rigidbody2D>();
         playerData = GetComponent<PlayerData>();
+        animator = GetComponent<Animator>();
     }
 
     void Update(){
         /// The health of the boulder gets reduced the last tick
         if(CheckMining()){
             BoulderData boulderData = miningBoulder.GetComponent<BoulderData>();
-            boulderData.durability -= playerData.pickaxeAbilityLevel * 20.0f;
+            boulderData.durability -= (10*playerData.strengthLevel) + 10.0f;
             playerData.energy -= 1;
         }
         if (building){
@@ -61,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        SetAnimations();
     }
     void FixedUpdate()
     {
@@ -94,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (!building){
             if (mining == true) return;
             mining = true;
-            miningTimer = 1.0f;
+            miningTimer = miningSpeed - ((1/4)*playerData.pickaxeAbilityLevel);
             miningBoulder = boulder;
         }
     }
@@ -124,6 +129,36 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ExitActionHappening(){
         actionHappening = false;
+    }
+
+    private void SetAnimations(){
+        if (rigidbody.velocity.x > 0.05){
+            if (runningLeft){
+                Vector3 localTransform = transform.localScale;
+                localTransform.x = Mathf.Abs(localTransform.x);
+                transform.localScale = localTransform;
+            }
+            runningLeft = false;
+            animator.Play("RunningSide");
+            
+        }
+        else if (rigidbody.velocity.x < -0.05){
+            if (!runningLeft){
+                Vector3 localTransform = transform.localScale;
+                localTransform.x = localTransform.x * (-1);
+                transform.localScale = localTransform;
+                runningLeft = true;
+                animator.Play("RunningSide");
+            }
+            
+        }
+        else if (Mathf.Abs(rigidbody.velocity.x) < 0.1 && Mathf.Abs(rigidbody.velocity.y) > 0.1){
+            animator.Play("RunningUp");
+        }
+        else{
+            runningLeft = false;
+            animator.Play("Idle");
+        }
     }
 
     // void OnTriggerEnter2D(Collider2D collider){

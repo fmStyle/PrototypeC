@@ -17,6 +17,10 @@ TagManager:
   - enterhousemaster
   - exithousemaster
   - torch
+  - item
+  - botanistnpc
+  - enterhousebotanist
+  - exithousebotanist
   layers:
   - Default
   - TransparentFX

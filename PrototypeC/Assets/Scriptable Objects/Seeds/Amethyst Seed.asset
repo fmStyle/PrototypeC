@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Amethyst Seed
   m_EditorClassIdentifier: 
   id: 1
-  spriteState0: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  spriteState1: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  spriteState2: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  spriteState3: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  spriteState0: {fileID: 21300000, guid: 8127efba61b524d4e9b5e6e1056dd73e, type: 3}
+  spriteState1: {fileID: 21300000, guid: 31b2694330e48466a9991564cd61b110, type: 3}
+  spriteState2: {fileID: 21300000, guid: e9c1670d31036460684f4e0a8a60c81d, type: 3}
+  spriteState3: {fileID: 21300000, guid: ccb602cb7ce364c7e9148d0572297834, type: 3}

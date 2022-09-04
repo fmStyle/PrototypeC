@@ -11,6 +11,11 @@ public class PlayerTriggerFunctions : MonoBehaviour
     public GameObject SkillShop;
     public Transform MasterHousePosition;
     public Transform MasterHouseExitPosition;
+
+    public GameObject BotanistShop;
+    public Transform BotanistHousePosition;
+    public Transform BotanistExitPosition;
+
     PlayerInventory playerInventory;
     PlayerData playerData;
     PlayerMovement playerMovement;
@@ -29,11 +34,11 @@ public class PlayerTriggerFunctions : MonoBehaviour
     {
         foreach (GameObject randomobject in objectsTouchingPlayer)
         {
+            /// Normal Interactions
             if (randomobject.tag == "boulder"){
                 // If the player clicks when close to a boulder object it calls the Pick function to affect the boulder
                 if (Input.GetMouseButtonDown(0)){
                     playerFunctions.Mine(randomobject);
-                    // playerData.energy -= 1;
                     break;
                 }
             }
@@ -67,6 +72,8 @@ public class PlayerTriggerFunctions : MonoBehaviour
                     playerInventory.OpenInventory();
                 }
             }
+
+            /// Master
             if (randomobject.tag == "enterhousemaster"){
                 if (Input.GetKeyDown(KeyCode.E)){
                     transform.position = new Vector3(MasterHousePosition.position.x, MasterHousePosition.position.y, 0);
@@ -76,12 +83,10 @@ public class PlayerTriggerFunctions : MonoBehaviour
             }
             if (randomobject.tag == "exithousemaster"){
                 if (Input.GetKeyDown(KeyCode.E)){
-                    // Transform enterHouse = GameObject.FindWithTag("enterhousemaster").transform;
                     transform.position = new Vector3(MasterHouseExitPosition.position.x, MasterHouseExitPosition.position.y, 0);
                 }
                 
             }
-
             if (randomobject.tag == "masternpc"){
                 Dialogue dialogue = randomobject.GetComponent<Dialogue>();
                 if (Input.GetKeyDown(KeyCode.E)){
@@ -94,6 +99,47 @@ public class PlayerTriggerFunctions : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.C)){
                     if (!dialogue.ConversationStarted() && !SkillShop.activeSelf){
+                        playerMovement.EnterActionHappening();
+                        dialogue.StartDialogue();
+                    }
+                    else if (dialogue.ConversationStarted() && !dialogue.LineEnded()){
+                        dialogue.EndLine();
+                    }
+                    else if (dialogue.ConversationStarted() && dialogue.LineEnded()){
+                        if(dialogue.NextDialogueLine()) {
+                            playerMovement.ExitActionHappening();
+                        }
+                    }
+                }
+            }
+
+
+            /// Botanist
+            if (randomobject.tag == "enterhousebotanist"){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    transform.position = new Vector3(BotanistHousePosition.position.x, BotanistHousePosition.position.y, 0);
+                    
+                }
+                
+            }
+            if (randomobject.tag == "exithousebotanist"){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    transform.position = new Vector3(BotanistExitPosition.position.x, BotanistExitPosition.position.y, 0);
+                }
+                
+            }
+            if (randomobject.tag == "botanistnpc"){
+                Dialogue dialogue = randomobject.GetComponent<Dialogue>();
+                if (Input.GetKeyDown(KeyCode.E)){
+                    if (BotanistShop.activeSelf){
+                        BotanistShop.SetActive(false);
+                    }
+                    else if (!SkillShop.activeSelf && !dialogue.IsDialogActive()){
+                        BotanistShop.SetActive(true);
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.C)){
+                    if (!dialogue.ConversationStarted() && !BotanistShop.activeSelf){
                         playerMovement.EnterActionHappening();
                         dialogue.StartDialogue();
                     }
@@ -128,6 +174,9 @@ public class PlayerTriggerFunctions : MonoBehaviour
         }
         if (collider.tag == "masternpc"){
             SkillShop.SetActive(false);
+        }
+        if (collider.tag == "botanistnpc"){
+            BotanistShop.SetActive(false);
         }
     }
 }

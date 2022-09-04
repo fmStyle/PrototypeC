@@ -68,7 +68,7 @@ public class PlayerData : MonoBehaviour
         // luckLevelText.text = "Luck Level: " + luckLevel.ToString();
     }
 
-    private void UpdateStrings(){
+    public void UpdateStrings(){
         moneyText.text = "Money: " + playerInventory.Money().ToString();
         strenghtLevelText.text = "Strenght: " + strengthLevel.ToString();
         botanistLevelText.text = "Botanist Level: " + botanistLevel.ToString();

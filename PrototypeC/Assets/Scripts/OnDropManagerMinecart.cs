@@ -9,7 +9,7 @@ public class OnDropManagerMinecart : MonoBehaviour, IDropHandler
     public GameObject player;
     public GameObject minecart;
     public void OnDrop(PointerEventData eventData){
-        if (eventData.pointerDrag != null){
+        if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<ItemUI>() != null){
             Debug.Log("WORKING!");
             eventData.pointerDrag.transform.parent = gameObject.transform.Find("Viewport").transform.Find("Content").transform;
             if (eventData.pointerDrag.GetComponent<ItemUI>().whereNow != "minecart"){
