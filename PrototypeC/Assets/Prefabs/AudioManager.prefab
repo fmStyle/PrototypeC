@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6551691012266686257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6551691012266686263}
+  - component: {fileID: 6551691012266686256}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: audiomanager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6551691012266686263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551691012266686257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.5064573, y: 3.7143393, z: -0.19631976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6551691012266686256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551691012266686257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ee9e43aa6d847b7936bb2446a1f1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: GreenRiverRadio
+    clip: {fileID: 8300000, guid: 149f59678c06d44bf89961af8e83f420, type: 3}
+    owner: {fileID: 5420055368754150747, guid: 2b312927cc1aa4407acd2d61584aa684, type: 3}
+    volume: 0.7
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 118
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CottonFieldsRadio
+    clip: {fileID: 8300000, guid: 793c039627504428b9e62a9dc1178dc6, type: 3}
+    owner: {fileID: 5420055368754150747, guid: 2b312927cc1aa4407acd2d61584aa684, type: 3}
+    volume: 0.7
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 118
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LookinOutRadio
+    clip: {fileID: 8300000, guid: cc70bca6d72fa4d7c814f6848c36993f, type: 3}
+    owner: {fileID: 5420055368754150747, guid: 2b312927cc1aa4407acd2d61584aa684, type: 3}
+    volume: 0.7
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 118
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Walking
+    clip: {fileID: 8300000, guid: 357b537724d9c42dcb31b768a530e2e6, type: 3}
+    owner: {fileID: 3470127519939724585, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
+    volume: 0.611
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 217
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: RadioTurn
+    clip: {fileID: 8300000, guid: 094f828ea4a3b44e2b93c73f27272139, type: 3}
+    owner: {fileID: 3470127519939724585, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: MineSound
+    clip: {fileID: 8300000, guid: 7340f31c0e2dc4fe0b2dd885a3dee34c, type: 3}
+    owner: {fileID: 3470127519939724585, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: GeneralUseAction
+    clip: {fileID: 8300000, guid: 8d599c9a384944d05b3487183e061733, type: 3}
+    owner: {fileID: 0}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LevelUp
+    clip: {fileID: 8300000, guid: a2c1a0d98357c4f55a031b449ab599b0, type: 3}
+    owner: {fileID: 0}
+    volume: 0.353
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use1
+    clip: {fileID: 8300000, guid: 4005e6705ab78444ba14d4a61e743bce, type: 3}
+    owner: {fileID: 0}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use2
+    clip: {fileID: 8300000, guid: b9908c5a9230846f18ce476b6292f500, type: 3}
+    owner: {fileID: 0}
+    volume: 0.345
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use3
+    clip: {fileID: 8300000, guid: 7ad4e11132ce74d919b10751564cabd0, type: 3}
+    owner: {fileID: 0}
+    volume: 0.549
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Use3
+    clip: {fileID: 8300000, guid: 7ad4e11132ce74d919b10751564cabd0, type: 3}
+    owner: {fileID: 0}
+    volume: 0.455
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: RadioTurn
+    clip: {fileID: 8300000, guid: 094f828ea4a3b44e2b93c73f27272139, type: 3}
+    owner: {fileID: 0}
+    volume: 0.229
+    pitch: 1
+    spatialBlend: 1
+    maxDistance: 10
+    spread: 222
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CasetteSound
+    clip: {fileID: 8300000, guid: 0566e04acee1746499aa8a5d453eb71a, type: 3}
+    owner: {fileID: 0}
+    volume: 0.377
+    pitch: 1
+    spatialBlend: 0.452
+    maxDistance: 10
+    spread: 151
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Coins
+    clip: {fileID: 8300000, guid: b0359af35307a411cb05bf1275c71e3d, type: 3}
+    owner: {fileID: 0}
+    volume: 0.433
+    pitch: 1
+    spatialBlend: 0.452
+    maxDistance: 10
+    spread: 151
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}

@@ -11,6 +11,7 @@ public class Radio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         songIndex = 0;
         audioManager.Play(songsRadio[songIndex]);
         turnedOn = true;
