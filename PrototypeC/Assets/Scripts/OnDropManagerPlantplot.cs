@@ -10,7 +10,7 @@ public class OnDropManagerPlantplot : MonoBehaviour, IDropHandler
     public GameObject plantplot;
     public void OnDrop(PointerEventData eventData){
         if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<ItemUI>() != null){
-            if (eventData.pointerDrag.GetComponent<ItemUI>().item.type != "stone") return;
+            if (eventData.pointerDrag.GetComponent<ItemUI>().item.type != "stone" || plantplot.GetComponent<Plantplot>().AlreadyHasSeed()) return;
             eventData.pointerDrag.transform.parent = gameObject.transform.Find("Container").transform;
             gameObject.transform.Find("Info").gameObject.GetComponent<TextMeshProUGUI>().text = eventData.pointerDrag.GetComponent<ItemUI>().item.name;
             FindObjectOfType<AudioManager>().Play("Use3");

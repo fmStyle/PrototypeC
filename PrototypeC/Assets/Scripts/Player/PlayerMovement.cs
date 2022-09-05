@@ -24,13 +24,13 @@ public class PlayerMovement : MonoBehaviour
     public bool actionHappening;
     public bool building;
     Animator animator;
-    bool runningLeft;
+    bool flipped;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        runningLeft = false;
+        // runningLeft = false;
         // objectsTouchingBuildingObject = new HashSet<GameObject>();
         mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         building = false;
@@ -145,35 +145,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetAnimations(){
         if (!mining){
-            if (rigidbody.velocity.x > 0.03){
-                if (runningLeft){
-                    Vector3 localTransform = transform.localScale;
-                    localTransform.x = Mathf.Abs(localTransform.x);
-                    transform.localScale = localTransform;
-                }
-                runningLeft = false;
-                animator.Play("RunningSide");
-                
-            }
-            else if (rigidbody.velocity.x < -0.03){
-                if (!runningLeft){
-                    Vector3 localTransform = transform.localScale;
-                    localTransform.x = localTransform.x * (-1);
-                    transform.localScale = localTransform;
-                    
+            if (rigidbody.velocity.magnitude >= 0.1f){
+                float angle = Mathf.Atan2((rigidbody.velocity.y),(rigidbody.velocity.x));
+                if (angle < 0) angle += 2*Mathf.PI;
+                if ((0 <= angle && angle <= Mathf.PI/4f) || (7f*Mathf.PI/4f <= angle && angle <= 2f*Mathf.PI)){
+                    FlipCharacterNormal();
                     animator.Play("RunningSide");
                 }
-                runningLeft = true;
-                
-            }
-            else if (Mathf.Abs(rigidbody.velocity.x) < 0.3 && Mathf.Abs(rigidbody.velocity.y) > 0.03){
-                animator.Play("RunningUp");
-            }
-            else{
+                if (Mathf.PI/4f <= angle && angle <= 3f*Mathf.PI/4f){
+                    FlipCharacterNormal();
+                    animator.Play("RunningUp");
+                }
+                if (3f*Mathf.PI/4f <= angle && angle <= 5f*Mathf.PI/4f){
+                    FlipCharacter();
+                    animator.Play("RunningSide");
+                }
+                if (5f*Mathf.PI/4f <= angle && angle <= 7f*Mathf.PI/4f){
+                    FlipCharacter();
+                    animator.Play("RunningUp");
+                }
+            } else{
                 animator.Play("Idle");
             }
         } else{
             animator.Play("Mining");
+        }
+    }
+
+    private void FlipCharacter(){
+        if (!flipped){
+            Vector3 localTransform = transform.localScale;
+            localTransform.x = localTransform.x * (-1);
+            transform.localScale = localTransform;
+            flipped = true;
+        }
+    }
+    private void FlipCharacterNormal(){
+        if (flipped){
+            Vector3 localTransform = transform.localScale;
+            localTransform.x = Mathf.Abs(localTransform.x);
+            transform.localScale = localTransform;
+            flipped = false;
         }
     }
 
