@@ -104,7 +104,11 @@ public class PlayerMovement : MonoBehaviour
     }
     public void CalculateMiningSpeed(){
         int pickaxeAbilityLevel = playerData.pickaxeAbilityLevel;
-        miningSpeed = miningSpeed - 1/(pickaxeAbilityLevel*pickaxeAbilityLevel);
+        // miningSpeed = miningSpeed - 1f/((float)pickaxeAbilityLevel*(float)pickaxeAbilityLevel);
+        // Debug.Log(miningSpeed);
+        // Debug.Log(miningSpeed - 1f/((float)pickaxeAbilityLevel*(float)pickaxeAbilityLevel));
+        miningSpeed = miningSpeed - 1.0f/(Mathf.Pow(pickaxeAbilityLevel, 2));
+        Debug.Log(miningSpeed);
     }
     public void Mine(GameObject boulder){
         
@@ -119,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
     public bool CheckMining(){
         if (mining){
             miningTimer -= Time.deltaTime;
-            Debug.Log(miningTimer);
+            // Debug.Log(miningTimer);
             if (miningTimer <= 0.0f){
                 mining = false;
                 miningTimer = miningSpeed;

@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbcf1233b9374a4cbe8706a278b102d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 300
+  durability: 400
   necessaryStrength: 5
   rarity: 2
   drop: {fileID: 7674856863890448398, guid: 926c20937b7e64e17bf0fbad499dfd0f, type: 3}

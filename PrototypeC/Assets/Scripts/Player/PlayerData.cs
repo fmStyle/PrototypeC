@@ -94,9 +94,10 @@ public class PlayerData : MonoBehaviour
             playerDataAux.strengthLevel++;
             playerInventoryAux.RemoveMoney(playerDataAux.strenghtLevelUpPrice);
             playerDataAux.strenghtLevelUpPrice += playerDataAux.strenghtLevelUpPrice/4.0f;
+            GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
         }
         playerDataAux.UpdateStrings();
-        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
+        
     }
     public void LevelUpBotanist(){
         GameObject player = GameObject.FindWithTag("player");
@@ -107,9 +108,10 @@ public class PlayerData : MonoBehaviour
             playerDataAux.botanistLevel++;
             playerInventoryAux.RemoveMoney(playerDataAux.botanistLevelUpPrice);
             playerDataAux.botanistLevelUpPrice += playerDataAux.botanistLevelUpPrice/4.0f;
+            GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
         }
         playerDataAux.UpdateStrings();
-        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
+        
     }
     public void LevelUpPickaxe(){
         GameObject player = GameObject.FindWithTag("player");
@@ -120,10 +122,11 @@ public class PlayerData : MonoBehaviour
             playerDataAux.pickaxeAbilityLevel++;
             playerInventoryAux.RemoveMoney(playerDataAux.pickaxeLevelUpPrice);
             playerDataAux.pickaxeLevelUpPrice += playerDataAux.pickaxeLevelUpPrice/4.0f;
+            GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
+            player.GetComponent<PlayerMovement>().CalculateMiningSpeed();
         }
         playerDataAux.UpdateStrings();
-        player.GetComponent<PlayerMovement>().CalculateMiningSpeed();
-        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
+        
     }
     public void LevelUpLuck(){
         GameObject player = GameObject.FindWithTag("player");
@@ -134,8 +137,9 @@ public class PlayerData : MonoBehaviour
             playerDataAux.luckLevel++;
             playerInventoryAux.RemoveMoney(playerDataAux.luckLevelUpPrice);
             playerDataAux.luckLevelUpPrice += playerDataAux.luckLevelUpPrice/4.0f;
+            GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
         }
         playerDataAux.UpdateStrings();
-        GameObject.FindWithTag("audiomanager").GetComponent<AudioManager>().Play("LevelUp");
+        
     }
 }

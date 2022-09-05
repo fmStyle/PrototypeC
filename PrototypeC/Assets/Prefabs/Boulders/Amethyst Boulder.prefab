@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbcf1233b9374a4cbe8706a278b102d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 100
-  necessaryStrength: 1
-  rarity: 10
+  durability: 130
+  necessaryStrength: 2
+  rarity: 7
   drop: {fileID: 7674856863890448398, guid: f96f87f79af294f3499c5dee064750c0, type: 3}
   player: {fileID: 3470127519939724585, guid: e7dc4b05ca98f4223887d783f493660d, type: 3}
   State1: {fileID: 21300000, guid: 7ec96e1e5a94b45b181cd21b0eb6969d, type: 3}

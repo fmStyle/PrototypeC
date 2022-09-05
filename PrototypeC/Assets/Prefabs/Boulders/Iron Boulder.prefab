@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbcf1233b9374a4cbe8706a278b102d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 70
+  durability: 100
   necessaryStrength: 1
   rarity: 14
   drop: {fileID: 7674856863890448398, guid: 325741079025949d7971416297014c6e, type: 3}
