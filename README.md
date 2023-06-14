@@ -1,5 +1,5 @@
 # PrototypeC
-Simple resource gathering and leveling up game I've made for a coding interview.
+Simple resource gathering and leveling up game for demo purposes.
 
 Interesting mechanics it has: Building system, Dialog system, Radio system, Multiple inventories with a drag and drop system for each item.
 
